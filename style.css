@@ -1,0 +1,277 @@
+
+:root {
+    --primary-color: #3562a7;
+    --accent: #2563eb;
+    --text-gray: #666;
+    --border-color: #ddd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin: -30px -30px 30px -30px;
+    padding: 30px;
+    background-color: var(--primary-color);
+    border-radius: 10px 10px 0 0;
+}
+
+header h1 {
+    color: white;
+    font-size: 28px;
+    margin: 0;
+}
+
+.controls {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+form .row {
+    margin-bottom: 15px;
+}
+
+form .row label {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-bottom: 6px;
+    display: block;
+}
+
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--accent);
+    color: white;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button.muted {
+    background-color: #f0f0f0;
+    color: var(--text-gray);
+}
+
+.summary {
+    margin-bottom: 30px;
+}
+
+.total-box {
+    background-color: #f5f5f5;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+#total {
+    font-size: 24px;
+    color: var(--accent);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.category-box {
+    margin-bottom: 30px;
+}
+
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.category-table th,
+.category-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.category-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.transactions-section {
+    margin-top: 20px;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.transactions-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.transactions-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.t-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.t-name {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.t-meta {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+.t-right {
+    text-align: right;
+}
+
+.t-amount {
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.delete-btn {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Add animation for new transactions */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.transaction-item {
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: var(--success);
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideUp 0.3s ease forwards;
+}
+
+.notification.error {
+    background: var(--danger);
+}
+
+.notification.fade-out {
+    animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@media (max-width:720px) {
+    .summary { flex-direction: column }
+    .controls form .row { width: 100% }
+    
+    .notification {
+        left: 20px;
+        right: 20px;
+        text-align: center;
+    }
+}
